@@ -21,15 +21,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Interface {
-	public static Appli ap;
+	public static Youtube youtube;
 	public static ArrayList<String> listSong;
+	public static ItunesParser it;
+	
     public static void main(String[] arg) throws IOException, ServiceException {	
     Interface i=new Interface();
 	JFrame cadre = new javax.swing.JFrame("Main Menu");
+	it = new ItunesParser();
+	youtube = new Youtube();
+	youtube.doPlaylist("C:/Users/roman/Desktop/list.xml","salut5");
+	listSong = youtube.getSongs();
 	JScrollPane panneau = i.ItunesText();
-	ap = new Appli();
-	listSong = ap.getSongs();
-	ap.doPlaylist("salut2");
 	JScrollPane panneau2 = i.YoutubeText();
 	GridLayout grid = new GridLayout(2,0);
 	cadre.setLayout(grid);
@@ -47,12 +50,10 @@ public class Interface {
     	JPanel itunes = new JPanel();
     	JTextArea text = new JTextArea(20,20);
     	text.setWrapStyleWord(true);
-    	ItunesParser it = new ItunesParser();
-		it.parsePlay("C:/Users/roman/Desktop/list.xml");
-		ArrayList<String> listSong = it.getItunesSong();
-		for(int i=0;i<listSong.size();i++)
+    	ArrayList<String> ItunesSongs = it.getItunesSongs();
+		for(int i=0;i<ItunesSongs.size();i++)
 		{
-			text.setText(text.getText()+"\n"+listSong.get(i));
+			text.setText(text.getText()+"\n"+ItunesSongs.get(i));
 		}
 		text.setEditable(false);
 		itunes.add(text);

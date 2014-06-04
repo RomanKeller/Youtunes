@@ -152,7 +152,7 @@ public class Youtube {
 		return createUrl(playlistName);
 	}
 	
-	public ArrayList<String> test()
+	public ArrayList<String> getSongs()
 	{
 		return YoutubeSongs;
 	}
@@ -161,6 +161,6 @@ public class Youtube {
 	{
 		Youtube youtube = new Youtube();
 		youtube.doPlaylist("C:/Users/roman/Desktop/list.xml","salut");
-		youtube.test();
+		youtube.getSongs();
 	}
 }
