@@ -1,0 +1,95 @@
+package Utils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.jdom2.Content;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.input.SAXBuilder;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.helpers.DefaultHandler;
+
+public class ItunesParser2 {
+	private ArrayList<String> listSong = new ArrayList<String>();
+	static Document document;
+	static Element racine;
+	
+	private void parse(String file)
+	{
+		SAXBuilder sxb = new SAXBuilder();
+	      try
+	      {
+	         //On crée un nouveau document JDOM avec en argument le fichier XML
+	         //Le parsing est terminé ;)
+	         document = sxb.build(file);
+	      }
+	      catch(Exception e){}
+
+	      //On initialise un nouvel élément racine avec l'élément racine du document.
+	      racine = document.getRootElement();
+	      System.out.println(racine);
+	      //Méthode définie dans la partie 3.2. de cet article
+	      afficheALL();
+	   }
+
+	static void afficheALL()
+	{
+	   //On crée une List contenant tous les noeuds "etudiant" de l'Element racine
+	   List listDict = racine.getChildren("dict");
+	   List dico = ((Element) listDict.get(0)).getChild("dict").getContent();
+	   System.out.println(((Element) listDict.get(0)).getChild("dict").getChildren());
+	   /*Iterator i = dico.iterator();
+	   while(i.hasNext())
+	   {
+		   Content courant = (Content) i.next();
+		   System.out.println("------------");
+		   System.out.println(courant.getParentElement());
+		   
+	   }
+	  
+
+	   
+	   
+	   
+	  /* System.out.println(((Element) listDict.get(0)).getChild("dict").getChild("dict").getChild("key").getDescendants().);
+
+	   //On crée un Iterator sur notre liste
+	   Iterator i = listDict.iterator();
+	  /* while(i.hasNext())
+	   {
+		  Element courant = (Element)i.next();
+		  //System.out.println(courant.getChild("dict").getChild("dict").getChild("Name").getText());
+	      //On recrée l'Element courant à chaque tour de boucle afin de
+	      //pouvoir utiliser les méthodes propres aux Element comme :
+	      //sélectionner un nœud fils, modifier du texte, etc...
+	     
+	      //On affiche le nom de l’élément courant
+	      System.out.println(courant.getChild("dict").getChild("dict").getText());
+	   }*/
+	}
+	
+	public static void main (String[] args) throws Exception
+	{
+		ItunesParser2 it =  new ItunesParser2();
+		String path = "C:/Users/roman/Desktop/list.xml";
+		it.parse(path);
+		/*String username = "roman.keller@telecom-paristech.fr";
+		String password = "projet";
+		System.out.println(JGroove.getSessionID());
+		JsonUser user = JGroovex.authenticateUser(username, password);*/
+		
+	
+	}
+	
+}

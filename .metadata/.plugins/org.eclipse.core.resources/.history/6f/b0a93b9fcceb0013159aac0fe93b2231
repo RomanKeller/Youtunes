@@ -1,0 +1,76 @@
+package Utils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.jdom2.Content;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.input.SAXBuilder;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.helpers.DefaultHandler;
+
+public class ItunesParser2 {
+	private static ArrayList<String> listSong = new ArrayList<String>();
+	static Document document;
+	static Element racine;
+	
+	private void parse(String file)
+	{
+		SAXBuilder sxb = new SAXBuilder();
+	      try
+	      {
+	         document = sxb.build(file);
+	      }
+	      catch(Exception e){}
+
+	      racine = document.getRootElement();
+	      
+	      getAll();
+	   }
+
+	static void getAll()
+	{
+	   List listDict = racine.getChildren("dict");
+	   List dico =  ((Element) listDict.get(0)).getChild("dict").getChildren();
+	   for(int i=1;i<dico.size();i=i+2)
+	   {
+		   Element current = (Element) dico.get(i);
+		   String name = current.getChildren().get(3).getText();
+		   String artist = current.getChildren().get(5).getText();
+		   String searchKey =  (name+" "+artist);
+		   searchKey = searchKey.replaceAll("[^\\p{ASCII}]", "");
+		   listSong.add(searchKey);
+	   }
+	}
+	
+	public ArrayList<String> getItunesSongs()
+	{
+		return listSong;
+	}
+	
+	public static void main (String[] args) throws Exception
+	{
+		ItunesParser2 it =  new ItunesParser2();
+		String path = "C:/Users/roman/Desktop/test.xml";
+		it.parse(path);
+		System.out.println(it.getItunesSongs());
+		/*String username = "roman.keller@telecom-paristech.fr";
+		String password = "projet";
+		System.out.println(JGroove.getSessionID());
+		JsonUser user = JGroovex.authenticateUser(username, password);*/
+		
+	
+	}
+	
+}

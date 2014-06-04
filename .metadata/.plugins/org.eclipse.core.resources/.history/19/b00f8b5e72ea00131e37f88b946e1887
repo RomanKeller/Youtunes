@@ -1,0 +1,24 @@
+package Applic;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+
+import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.GridLayout;
+
+public class Interface {
+    public static void main(String[] arg) {	
+	JFrame cadre = new javax.swing.JFrame("Main Menu");
+	JPanel panneau = new JPanel();
+	GridLayout grid = new GridLayout(2,0);
+	JTextArea text = new JTextArea();
+	text.setText("salut");
+	cadre.add(text);
+	cadre.pack();
+	cadre.setVisible(true);
+	cadre.setLocationRelativeTo(null);
+	cadre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}

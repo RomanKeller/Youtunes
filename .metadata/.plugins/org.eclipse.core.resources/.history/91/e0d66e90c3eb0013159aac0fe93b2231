@@ -1,0 +1,51 @@
+package Utils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+public class ItunesParser2 {
+	private ArrayList<String> listSong = new ArrayList<String>();
+	
+	private ArrayList<Node> asList(final NodeList list)
+	{
+		final ArrayList<Node> nodeList = new ArrayList<Node>();
+		for (int i = 0; i < list.getLength(); i++)
+		{
+			nodeList.add(list.item(i));
+		}
+		return nodeList;
+	}
+	
+	private void parse(String file) throws Exception
+	{
+		File libraryFile = new File(file);
+		FileInputStream fis = new FileInputStream(libraryFile);
+		
+		//XML
+		SAXBuilder sxb = new SAXBuilder();
+		
+
+	}
+	public static void main (String[] args) throws Exception
+	{
+		ItunesParser2 it =  new ItunesParser2();
+		String path = "C:/Users/roman/Desktop/list.xml";
+		it.parse(path);
+		/*String username = "roman.keller@telecom-paristech.fr";
+		String password = "projet";
+		System.out.println(JGroove.getSessionID());
+		JsonUser user = JGroovex.authenticateUser(username, password);*/
+		
+	
+	}
+	
+}

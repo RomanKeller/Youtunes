@@ -1,0 +1,45 @@
+package Applic;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+
+
+import Utils.ItunesParser;
+
+import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+
+public class Interface {
+    public static void main(String[] arg) {	
+	JFrame cadre = new javax.swing.JFrame("Main Menu");
+	JPanel panneau = new JPanel();
+	GridLayout grid = new GridLayout(2,0);
+	JTextArea text = new JTextArea();
+	text.setText("salut");
+	text.setEditable(false);
+	cadre.add(text);
+	cadre.pack();
+	cadre.setVisible(true);
+	cadre.setLocationRelativeTo(null);
+	cadre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    public JPanel ItunesText()
+    {
+    	JPanel itunes = new JPanel();
+    	GridLayout grid = new GridLayout(2,0);
+    	JTextArea text = new JTextArea();
+    	ItunesParser it = new ItunesParser();
+		it.parsePlay("C:/Users/roman/Desktop/list.xml");
+		ArrayList<String> listSong = it.getItunesSong();
+		for(int i=0;i<listSong.size();i++)
+		{
+			text.setText(listSong.get(i));
+		}
+	
+    	return itunes;
+    }
+}

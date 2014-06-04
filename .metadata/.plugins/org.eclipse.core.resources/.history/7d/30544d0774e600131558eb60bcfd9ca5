@@ -1,0 +1,185 @@
+package Applic;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Iterator;
+import java.util.List;
+
+import Utils.Distance;
+import Utils.Printer;
+import Utils.YouTubeMedia;
+
+import com.google.gdata.client.youtube.YouTubeQuery;
+import com.google.gdata.client.youtube.YouTubeService;
+import com.google.gdata.data.Link;
+import com.google.gdata.data.PlainTextConstruct;
+import com.google.gdata.data.TextConstruct;
+import com.google.gdata.data.youtube.PlaylistEntry;
+import com.google.gdata.data.youtube.PlaylistFeed;
+import com.google.gdata.data.youtube.PlaylistLinkEntry;
+import com.google.gdata.data.youtube.PlaylistLinkFeed;
+import com.google.gdata.data.youtube.VideoEntry;
+import com.google.gdata.data.youtube.VideoFeed;
+import com.google.gdata.util.AuthenticationException;
+import com.google.gdata.util.ServiceException;
+import com.keepautomation.barcode.BarCode;
+import com.keepautomation.barcode.IBarCode;
+
+
+
+
+public class Appli {
+	private YouTubeService service;
+	private Distance d;
+	
+	
+	private Appli() throws AuthenticationException{
+		 service = new YouTubeService("179467727333.apps.googleusercontent.com", "AIzaSyDvAx-Sfz307fkgFSHoyP4f9RivYldVVRA");
+		 service.setUserCredentials("keller.projet380@gmail.com", "projet380");
+		 d = new Distance();
+		
+	}
+	private YouTubeService getService()
+	{
+		return service; 
+	}
+
+	private String getSongId(VideoEntry video)
+	{
+		String idvideo = video.getId();
+		String id = idvideo.substring(27, 38);
+		return id;
+	}
+	private String getSongName(VideoEntry video)
+	{
+		return video.getTitle().getPlainText();
+	}
+	private void addSongToPlaylist(String songName,String playListName) throws IOException, ServiceException
+	{
+		PlaylistLinkEntry play = getPlaylist(playListName);
+		String playlistUrl = play.getFeedUrl();
+		PlaylistEntry playlistEntry = new PlaylistEntry(searchSong(songName));
+		service.insert(new URL(playlistUrl), playlistEntry);
+	}
+	
+	private VideoEntry searchSong(String name) throws IOException, ServiceException
+	{
+		int distance = 50 ; // On prend une distance de 50 pour être sur 
+		VideoEntry video = null;
+		YouTubeQuery query = new YouTubeQuery(new URL("http://gdata.youtube.com/feeds/api/videos"));
+		query.setFullTextQuery(name);
+		VideoFeed videoFeed = service.query(query, VideoFeed.class);
+		for (int i=0;i<10;i++)
+		{
+			VideoEntry vid = videoFeed.getEntries().get(i);
+			int distancetmp = d.computeLevenshteinDistance(name, getSongName(vid));
+			if(distancetmp<distance)
+			{
+				distance = distancetmp;
+				video = vid; 
+			}
+		}
+		return video;
+	}
+	private PlaylistLinkEntry getPlaylist(String name) throws MalformedURLException, IOException, ServiceException
+	{
+		PlaylistLinkEntry playlist = null;
+		String feedUrl = "http://gdata.youtube.com/feeds/api/users/default/playlists";
+		PlaylistLinkFeed feed = service.getFeed(new URL(feedUrl), PlaylistLinkFeed.class);
+		int i = 0;
+		PlaylistLinkEntry tmp =null;
+		while(playlist==null)
+		{
+			if(i==feed.getEntries().size())
+				break; 
+			tmp = feed.getEntries().get(i);
+			if(getPlaylistName(tmp).equals(name))
+				playlist=tmp;
+			i++;
+		}
+		return playlist;
+	}
+	
+	private PlaylistEntry getPlaylistEntry(String name) throws MalformedURLException, IOException, ServiceException
+	{
+		PlaylistEntry playlist = null;
+		String feedUrl = "http://gdata.youtube.com/feeds/api/users/default/playlists";
+		PlaylistFeed feed = service.getFeed(new URL(feedUrl), PlaylistFeed.class);
+		int i = 0;
+		PlaylistEntry tmp = null;
+		while(playlist==null)
+		{
+			if(i==feed.getEntries().size())
+				break; 
+			tmp = feed.getEntries().get(i);
+			if(getPlaylistName(tmp).equals(name))
+				playlist=tmp;
+			i++;
+		}
+		return playlist;
+	}
+	
+	
+	private void createPlaylist(String name) throws MalformedURLException, IOException, ServiceException
+	{
+		String feedUrl = "http://gdata.youtube.com/feeds/api/users/default/playlists";
+		PlaylistLinkEntry newEntry = new PlaylistLinkEntry();
+	    newEntry.setTitle(new PlainTextConstruct(name));
+	    service.insert(new URL(feedUrl), newEntry);
+	}
+	
+	private String getPlaylistName(PlaylistLinkEntry list)
+	{
+		return list.getTitle().getPlainText();
+	}
+	
+	private String getPlaylistName(PlaylistEntry list)
+	{
+		return list.getTitle().getPlainText();
+	}
+	
+	
+	private String createUrl(String playlist) throws MalformedURLException, IOException, ServiceException
+	{
+		String adress = null;
+		PlaylistLinkEntry play = getPlaylist(playlist);
+		URL url = new URL(play.getFeedUrl());
+		adress = service.getFeed(url, PlaylistFeed.class).getEntries().get(0).getSelf().getHtmlLink().getHref().substring(0, 43);
+		adress= adress+"list="+play.getPlaylistId();
+		return adress;
+	}
+	private void createBarCode(String url)
+	{
+	 BarCode barcode = new BarCode();
+     barcode.setCodeToEncode(url);
+     barcode.setSymbology(IBarCode.QRCODE);
+    // barcode.setQrCodeDataMode(IBarCode.QR_MODE_AUTO);
+     barcode.setQrCodeEcl(IBarCode.QR_ECL_L);
+     barcode.setQrCodeVersion(1);
+     try
+     {     
+    	 barcode.draw("C:/Users/roman/Desktop/YouTunes/QRCODE");
+    	 System.out.println("ok");
+
+     }
+     catch (Exception e) 
+     {
+     e.printStackTrace();
+     }
+	}
+	public static void main(String[] args) throws IOException, ServiceException
+	{
+		Appli ap = new Appli();
+		YouTubeService service = ap.getService();
+		//PlaylistLinkEntry a = ap.getPlaylist("pppp");
+		//System.out.println(a.getPlaylistId());
+		ap.createBarCode(ap.createUrl("pppp"));
+		//System.out.println(ap.getSongId(ap.searchSong("don't you worry child")));
+		//System.out.println(ap.getPlaylistURL(ap.getPlaylist("pppp")));
+		//ap.addSongToPlaylist("titanium acoustic version", "test");
+	
+	}
+}
