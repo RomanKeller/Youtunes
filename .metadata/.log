@@ -2565,3 +2565,21 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.core 4 0 2014-06-04 12:33:25.702
+!MESSAGE An exception occurred during push on URI git://RomanKeller/C:/Users/roman/Desktop/YouTunes: git://RomanKeller/C:/Users/roman/Desktop/YouTunes: unknown host
+!STACK 0
+org.eclipse.jgit.api.errors.TransportException: git://RomanKeller/C:/Users/roman/Desktop/YouTunes: unknown host
+	at org.eclipse.jgit.api.PushCommand.call(PushCommand.java:160)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:221)
+	at org.eclipse.egit.ui.internal.push.PushOperationUI.execute(PushOperationUI.java:164)
+	at org.eclipse.egit.ui.internal.push.PushOperationUI$1.run(PushOperationUI.java:226)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.eclipse.jgit.errors.TransportException: git://RomanKeller/C:/Users/roman/Desktop/YouTunes: unknown host
+	at org.eclipse.jgit.transport.TransportGitAnon.openConnection(TransportGitAnon.java:139)
+	at org.eclipse.jgit.transport.TransportGitAnon$TcpPushConnection.<init>(TransportGitAnon.java:209)
+	at org.eclipse.jgit.transport.TransportGitAnon.openPush(TransportGitAnon.java:116)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:154)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1173)
+	at org.eclipse.jgit.api.PushCommand.call(PushCommand.java:156)
+	... 4 more
