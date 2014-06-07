@@ -1,23 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.google.gdata.client.youtube.YouTubeService"/>
-<fullyQualifiedTypeName name="com.google.gdata.client.youtube.YouTubeQuery"/>
-<fullyQualifiedTypeName name="java.net.URL"/>
-<fullyQualifiedTypeName name="com.google.gdata.data.youtube.YtPublicationState"/>
-<fullyQualifiedTypeName name="com.google.gdata.data.youtube.YouTubeMediaGroup"/>
-<fullyQualifiedTypeName name="com.google.gdata.data.media.mediarss.MediaPlayer"/>
-<fullyQualifiedTypeName name="com.google.gdata.data.media.mediarss.MediaKeywords"/>
-<fullyQualifiedTypeName name="com.google.gdata.data.geo.impl.GeoRssWhere"/>
-<fullyQualifiedTypeName name="com.google.gdata.model.gd.Rating"/>
-<fullyQualifiedTypeName name="com.google.gdata.data.youtube.YtStatistics"/>
-<fullyQualifiedTypeName name="com.google.gdata.data.media.mediarss.MediaThumbnail"/>
-<fullyQualifiedTypeName name="com.google.gdata.data.youtube.YouTubeMediaContent"/>
 <fullyQualifiedTypeName name="com.google.gdata.data.youtube.YouTubeMediaRating"/>
 <fullyQualifiedTypeName name="com.google.gdata.data.extensions.Rating"/>
 <fullyQualifiedTypeName name="com.google.gdata.data.youtube.VideoEntry"/>
 <fullyQualifiedTypeName name="com.google.gdata.data.youtube.VideoFeed"/>
 <fullyQualifiedTypeName name="Utils.Printer"/>
-<fullyQualifiedTypeName name="java.util.Iterator"/>
 <fullyQualifiedTypeName name="com.jacob.com.ComThread"/>
 <fullyQualifiedTypeName name="com.jacob.com.Dispatch"/>
 <fullyQualifiedTypeName name="com.jacob.activeX.ActiveXComponent"/>
@@ -25,7 +12,6 @@
 <fullyQualifiedTypeName name="com.google.gdata.data.Link"/>
 <fullyQualifiedTypeName name="com.google.gdata.data.youtube.PlaylistLinkFeed"/>
 <fullyQualifiedTypeName name="java.lang.management.PlatformManagedObject"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.google.gdata.data.youtube.PlaylistLinkEntry"/>
 <fullyQualifiedTypeName name="com.google.api.services.youtube.model.PlaylistSnippet"/>
 <fullyQualifiedTypeName name="com.google.api.services.youtube.YouTube"/>
@@ -35,7 +21,6 @@
 <fullyQualifiedTypeName name="java.util.Calendar"/>
 <fullyQualifiedTypeName name="com.google.api.services.youtube.model.PlaylistStatus"/>
 <fullyQualifiedTypeName name="com.google.gdata.data.youtube.PlaylistEntry"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="com.keepautomation.barcode.BarCode"/>
 <fullyQualifiedTypeName name="com.keepautomation.barcode.IBarCode"/>
 <fullyQualifiedTypeName name="com.google.zxing.common.BitMatrix"/>
@@ -43,7 +28,6 @@
 <fullyQualifiedTypeName name="com.google.zxing.BarcodeFormat"/>
 <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
 <fullyQualifiedTypeName name="java.io.File"/>
-<fullyQualifiedTypeName name="Utils.ItunesParser"/>
 <fullyQualifiedTypeName name="javax.swing.text.Position"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
@@ -57,4 +41,23 @@
 <fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
 <fullyQualifiedTypeName name="javax.swing.ScrollPaneConstants"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.google.gdata.util.AuthenticationException"/>
+<fullyQualifiedTypeName name="com.google.gdata.data.youtube.YtOccupation"/>
+<fullyQualifiedTypeName name="Applic.Youtube"/>
+<fullyQualifiedTypeName name="javax.xml.parsers.SAXParserFactory"/>
+<fullyQualifiedTypeName name="javax.xml.parsers.SAXParser"/>
+<fullyQualifiedTypeName name="org.xml.sax.helpers.DefaultHandler"/>
+<fullyQualifiedTypeName name="org.jdom2.input.SAXBuilder"/>
+<fullyQualifiedTypeName name="org.jdom2.Element"/>
+<fullyQualifiedTypeName name="org.w3c.dom.Document"/>
+<fullyQualifiedTypeName name="org.jdom2.Document"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="org.jdom2.Content"/>
+<fullyQualifiedTypeName name="Utils.ItunesParser"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+<fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
 </qualifiedTypeNameHistroy>

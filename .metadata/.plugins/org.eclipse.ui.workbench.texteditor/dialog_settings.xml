@@ -13,11 +13,18 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="searchSong" key="selection"/>
+		<item value="Result" key="selection"/>
 		<list key="findhistory">
+			<item value="result"/>
+			<item value="getChildren"/>
+			<item value="go"/>
 			<item value="searchSong"/>
 		</list>
 		<list key="replacehistory">
 		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item value="363" key="DIALOG_Y_ORIGIN"/>
+		<item value="652" key="DIALOG_X_ORIGIN"/>
 	</section>
 </section>

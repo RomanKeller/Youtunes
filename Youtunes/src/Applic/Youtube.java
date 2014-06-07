@@ -32,10 +32,15 @@ public class Youtube {
 		 d = new Distance();
 	}
 	
-	public Youtube(String login,String password) throws AuthenticationException
+	public Youtube(String login,String password) 
 	{
 		service = new YouTubeService("179467727333.apps.googleusercontent.com", "AIzaSyDvAx-Sfz307fkgFSHoyP4f9RivYldVVRA");
-		service.setUserCredentials(login, password);
+		try {
+			service.setUserCredentials(login, password);
+		} catch (AuthenticationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		d = new Distance();
 	}
 	

@@ -1,0 +1,22 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Upload the playlist</title>
+</head>
+
+<body>
+	<div>
+		 <%  
+	 Boolean result = (Boolean) request.getAttribute("upResult");
+	if(result!=null)
+	{
+		if(result)
+		{
+			out.println("C'est bon ! ");
+			String name = (String) request.getAttribute("name");
+		}
+	}
+	
+ %>
+</body>
+</html>

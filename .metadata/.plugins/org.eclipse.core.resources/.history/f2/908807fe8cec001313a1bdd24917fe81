@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Youtunes</title>
+<p> Bienvenue sur votre espace personnel </p>
+</head>
+<body>
+<p> Vos playlist Youtube Actuelles </p>
+  <%  String attribut = (String) request.getAttribute("message");
+  		out.println(attribut) ;
+  		%>
+  		<iframe id="ytplayer" type="text/html" width="640" height="390"
+  src="http://www.youtube.com/embed?listType=playlist&index=1&list=PLFvcoOkuf1jeHXYZorZA0d4qSY3Hj3Zig;autoplay=1"
+  frameborder="0"/>
+</body>
+</html>

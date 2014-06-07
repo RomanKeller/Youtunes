@@ -1,0 +1,30 @@
+package com.java.servlets;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gdata.util.ServiceException;
+
+public class Computation extends Connexion, FileUploadHandler{
+	public void doGet( HttpServletRequest request,
+			HttpServletResponse response ) throws ServletException, IOException
+			{
+		String name = request.getParameter("name");
+		System.out.println(name);
+		String path =  "D:/ProjetUploads/"+name;
+		String playlistName = name.substring(0, name.length()-4);
+		try {
+			youtube.doPlaylist(path, name);
+			request.setAttribute( "okCompute", true );
+			request.setAttribute( "compute", "Playlist added on Youtube" );
+			this.getServletContext().getRequestDispatcher("/result.jsp" ).forward( request, response );
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+}
+}
+

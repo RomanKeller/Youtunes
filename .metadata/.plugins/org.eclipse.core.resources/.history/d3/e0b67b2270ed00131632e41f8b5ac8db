@@ -1,0 +1,26 @@
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="inc/style.css"
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Upload the playlist</title>
+</head>
+
+<body>
+<h1>You're playlist has been added</h1>
+	<div>
+		 <%  
+	 Boolean result = (Boolean) request.getAttribute("upResult");
+	if(result!=null)
+	{
+		if(result)
+		{
+			String res = (String) request.getAttribute("message");
+			String name = (String) request.getAttribute("name");
+			out.println(name);
+			out.println(res);
+		}
+	}
+	
+ %>
+</body>
+</html>
