@@ -1,4 +1,4 @@
-package Utils;
+package com.java.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,7 +24,10 @@ public class ItunesParser {
 	private static ArrayList<String> listSong = new ArrayList<String>();
 	static Document document;
 	static Element racine;
-	
+	/**
+	 * Parse the XML file
+	 * @param file
+	 */
 	public void parse(String file)
 	{
 		SAXBuilder sxb = new SAXBuilder();
@@ -38,7 +41,9 @@ public class ItunesParser {
 	      
 	      getAll();
 	   }
-
+	/**
+	 * Get all the song name + artist name 
+	 */
 	static void getAll()
 	{
 	   List listDict = racine.getChildren("dict");
@@ -54,18 +59,12 @@ public class ItunesParser {
 	   }
 	}
 	
+	/**
+	 *
+	 * @return the parsed Itunes songs
+	 */
 	public ArrayList<String> getItunesSongs()
 	{
 		return listSong;
-	}
-	
-	public static void main (String[] args) throws Exception
-	{
-		ItunesParser it =  new ItunesParser();
-		String path = "C:/Users/roman/Desktop/test.xml";
-		it.parse(path);
-		System.out.println(it.getItunesSongs());
-	
-	}
-	
+	}	
 }

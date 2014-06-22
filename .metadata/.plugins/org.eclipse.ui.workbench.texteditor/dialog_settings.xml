@@ -13,8 +13,10 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="Result" key="selection"/>
+		<item value="Appli" key="selection"/>
 		<list key="findhistory">
+			<item value="Appli"/>
+			<item value="clear"/>
 			<item value="result"/>
 			<item value="getChildren"/>
 			<item value="go"/>

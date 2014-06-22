@@ -1,24 +1,10 @@
-package Utils;
+package com.java.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
-import org.jdom2.Content;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.helpers.DefaultHandler;
 
 public class ItunesParser {
 	private static ArrayList<String> listSong = new ArrayList<String>();
@@ -41,6 +27,7 @@ public class ItunesParser {
 
 	static void getAll()
 	{
+		listSong.clear();
 	   List listDict = racine.getChildren("dict");
 	   List dico =  ((Element) listDict.get(0)).getChild("dict").getChildren();
 	   for(int i=1;i<dico.size();i=i+2)
@@ -57,15 +44,6 @@ public class ItunesParser {
 	public ArrayList<String> getItunesSongs()
 	{
 		return listSong;
-	}
-	
-	public static void main (String[] args) throws Exception
-	{
-		ItunesParser it =  new ItunesParser();
-		String path = "C:/Users/roman/Desktop/test.xml";
-		it.parse(path);
-		System.out.println(it.getItunesSongs());
-	
 	}
 	
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/Youtunes/src/Applic/ITunesTest1.java"/>
+<listEntry value="/Youtunes"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
-<listEntry value="1"/>
+<listEntry value="4"/>
 </listAttribute>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="Applic.ITunesTest1"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.java.application.ITunesTest1"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Youtunes"/>
 </launchConfiguration>

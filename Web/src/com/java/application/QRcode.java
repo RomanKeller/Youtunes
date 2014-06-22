@@ -1,6 +1,8 @@
-package Applic;
+package com.java.application;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
@@ -9,30 +11,51 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.imageio.ImageIO;
-
-import com.google.gdata.util.AuthenticationException;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.google.zxing.qrcode.encoder.ByteMatrix;
 import com.google.zxing.qrcode.encoder.Encoder;
 import com.google.zxing.qrcode.encoder.QRCode;
 
+
+/**
+ * Remarque : Ce code s'inspire d'un tutorial disponible a l'adresse suivante : http://thierry-leriche-dessirier.developpez.com/tutoriels/java/creer-qrcode-zxing-java2d-5-min/
+ */
 public class QRcode {
-    private static ByteMatrix generateMatrix(final String data, final ErrorCorrectionLevel level) throws WriterException {
+	/**
+	 * Method which creates the matrix which contains the data for the QR Code drawing 
+	 * @param data
+	 * @param level
+	 * @return
+	 * @throws WriterException
+	 */
+    public static ByteMatrix generateMatrix(final String data, final ErrorCorrectionLevel level) throws WriterException {
         final QRCode qr = new QRCode();
         Encoder.encode(data, level, qr);
         final ByteMatrix matrix = qr.getMatrix();
         return matrix;
     }
-
-    private static void writeImage(final String outputFileName, final String imageFormat, final ByteMatrix matrix, final int size)
+    
+    /**
+     * Method which create the QR Code
+     * @param outputFileName
+     * @param imageFormat
+     * @param matrix
+     * @param size
+     * @param name
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public static void writeImage(final String outputFileName, final String imageFormat, final ByteMatrix matrix, final int size, String name)
             throws FileNotFoundException, IOException {
 
         /**
          * Java 2D Traitement de Area
          */
-        Area a = new Area(); // les futurs modules
+        Area a = new Area(); 
         Area module = new Area(new Rectangle2D.Float(0.05f, 0.05f, 0.9f, 0.9f));
 
         AffineTransform at = new AffineTransform(); // pour déplacer le module
@@ -45,15 +68,13 @@ public class QRcode {
                 at.setToTranslation(1, 0); // on décale vers la droite
                 module.transform(at);
             }
-            at.setToTranslation(-width, 1); // on saute une ligne on revient au
-                                            // début
+            at.setToTranslation(-width, 1); // on saute une ligne on revient au début
             module.transform(at);
         }
 
         // agrandissement de l'Area pour le remplissage de l'image
         double ratio = size / (double) width;
-        // il faut respecter la Quietzone : 4 modules de bordures autour du QR
-        // Code
+        
         double adjustment = width / (double) (width + 8);
         ratio = ratio * adjustment;
 
@@ -66,14 +87,25 @@ public class QRcode {
         /**
          * Java 2D Traitement l'image
          */
-        BufferedImage im = new BufferedImage(size, size, BufferedImage.TYPE_INT_RGB);
+        BufferedImage im = new BufferedImage(size, size+50, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = (Graphics2D) im.getGraphics();
         Color couleur1 = new Color(0xFF0000);
         g.setPaint(couleur1);
 
         g.setBackground(new Color(0xFFFFFF));
-        g.clearRect(0, 0, size, size); // pour le fond blanc
+        g.clearRect(0, 0, size, size+50); 
         g.fill(a); // remplissage des modules
+        
+        FontMetrics fm = g.getFontMetrics();
+        String s = name;
+        int x = (size - fm.stringWidth(s)) / 2;
+        int y = size;
+        g.setColor(Color.black);
+        Font h = new Font("Helvetica", Font.PLAIN, 18);
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        g.setFont(h);
+        g.drawString(s, x, y);
+        g.drawString(date,x,y+30);
 
         // Ecriture sur le disque
         File f = new File(outputFileName);
@@ -84,33 +116,5 @@ public class QRcode {
         } catch (Exception e) {
         }
 
-    }
-
-    /**
-     * @param args
-     * @throws AuthenticationException 
-     */
-    public static void main(String[] args) throws AuthenticationException {
-        System.out.println("GridQrcodeGenerator DEBUT");
-        Appli ap= new Appli();
-        
-        try {
-            final String data = (ap.createUrl("pppp"));
-            final String imageFormat = "png";
-            final String outputFileName = "C:/Users/roman/Desktop/YouTunes/salut." + imageFormat;
-            final int size = 400;
-            final ErrorCorrectionLevel level = ErrorCorrectionLevel.Q;
-
-            // encode
-            final ByteMatrix matrix = generateMatrix(data, level);
-
-            // write in a file
-            writeImage(outputFileName, imageFormat, matrix, size);
-
-            System.out.println("GridQrcodeGenerator FIN");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

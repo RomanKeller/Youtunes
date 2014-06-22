@@ -8,30 +8,25 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 
 
  <servlet>
- <servlet-name>Appli</servlet-name>
- <servlet-class>com.java.servlets.Appli</servlet-class>
+ <servlet-name>Index</servlet-name>
+ <servlet-class>com.java.servlets.Index</servlet-class>
  </servlet>
  <servlet>
- <servlet-name>Connexion</servlet-name>
- <servlet-class>com.java.servlets.Connexion</servlet-class>
+ <servlet-name>Application</servlet-name>
+ <servlet-class>com.java.servlets.Application</servlet-class>
  </servlet>
 <servlet>
 <servlet-name>FileUploadHandler</servlet-name>
 <servlet-class>com.java.servlets.FileUploadHandler</servlet-class>
 </servlet>
 
-<servlet>
-<servlet-name>Computation</servlet-name>
-<servlet-class>com.java.servlets.Computation</servlet-class>
-</servlet>
-
 
  <servlet-mapping>
- <servlet-name>Appli</servlet-name>
+ <servlet-name>Index</servlet-name>
  <url-pattern>/main</url-pattern>
  </servlet-mapping>
  <servlet-mapping>
- <servlet-name>Connexion</servlet-name>
+ <servlet-name>Application</servlet-name>
  <url-pattern>/Connexion</url-pattern>
  </servlet-mapping>
 <servlet-mapping>
@@ -40,8 +35,13 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
   </servlet-mapping>   
 
 <servlet-mapping>
-    <servlet-name>Connexion</servlet-name>
+    <servlet-name>Application</servlet-name>
     <url-pattern>/Compute</url-pattern>
+  </servlet-mapping>   
+
+<servlet-mapping>
+    <servlet-name>Application</servlet-name>
+    <url-pattern>/Play</url-pattern>
   </servlet-mapping>   
 
 </web-app>

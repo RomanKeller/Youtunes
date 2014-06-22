@@ -1,0 +1,8 @@
+127.0.0.1 - - [16/Jun/2014:19:06:32 +0200] "GET / HTTP/1.1" 404 962
+0:0:0:0:0:0:0:1 - - [16/Jun/2014:19:06:55 +0200] "GET /Web/Connexion?loginClient=keller.roman88%40gmail.com&passClient=32.canrobert HTTP/1.1" 200 528
+0:0:0:0:0:0:0:1 - - [16/Jun/2014:19:06:55 +0200] "GET /Web/inc/style.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Jun/2014:19:06:55 +0200] "GET /favicon.ico HTTP/1.1" 404 984
+0:0:0:0:0:0:0:1 - - [16/Jun/2014:19:06:57 +0200] "GET /Web/main HTTP/1.1" 200 857
+0:0:0:0:0:0:0:1 - - [16/Jun/2014:19:07:04 +0200] "GET /Web/Connexion?loginClient=keller.roman88%40gmail.com&passClient=32.canrobert HTTP/1.1" 200 528
+0:0:0:0:0:0:0:1 - - [16/Jun/2014:19:07:49 +0200] "POST /Web/UploadServlet HTTP/1.1" 200 454
+0:0:0:0:0:0:0:1 - - [16/Jun/2014:19:08:04 +0200] "GET /Web/Compute?name=Chill.xml HTTP/1.1" 200 473

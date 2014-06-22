@@ -2,17 +2,20 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/gdata/java/lib/gdata-youtube-2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/gdata/java/lib/gdata-core-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/gdata/java/lib/gdata-media-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/gdata/java/lib/gdata-client-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/google-api-client-1.4.1-beta-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/guava-r07.jar"/>
-	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/core-2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/jdom-2.0.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/jdom-2.0.5-contrib.jar"/>
-	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/jdom-2.0.5-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/jdom-2.0.5-junit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/core-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/gdata-client-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/gdata-core-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/gdata-media-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/gdata-youtube-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/google-api-client-1.4.1-beta-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/guava-r07.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/jdom-2.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/jdom-2.0.5-contrib.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/jdom-2.0.5-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/jdom-2.0.5-junit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/org.eclipse.swt.win32.win32.x86_64.source_3.102.0.v20130605-1544.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/org.eclipse.swt.win32.win32.x86_64_3.102.0.v20130605-1544.jar"/>
+	<classpathentry kind="lib" path="C:/Users/roman/Desktop/YouTunes/Youtunes/lib/zxing-j2se-1.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

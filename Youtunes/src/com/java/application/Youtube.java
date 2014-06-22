@@ -1,12 +1,23 @@
-package Applic;
+package com.java.application;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Properties;
 
-import Utils.Distance;
-import Utils.ItunesParser;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import com.google.gdata.client.youtube.YouTubeQuery;
 import com.google.gdata.client.youtube.YouTubeService;
@@ -20,40 +31,51 @@ import com.google.gdata.data.youtube.VideoFeed;
 import com.google.gdata.data.youtube.YtOccupation;
 import com.google.gdata.util.AuthenticationException;
 import com.google.gdata.util.ServiceException;
+import com.java.utils.Distance;
+import com.java.utils.ItunesParser;
 
 public class Youtube {
 	private YouTubeService service;
 	private Distance d;
 	private ArrayList<String> YoutubeSongs = new ArrayList<>();
+	public boolean valideLogin = false;
 
-	public Youtube() throws AuthenticationException{
-		 service = new YouTubeService("179467727333.apps.googleusercontent.com", "AIzaSyDvAx-Sfz307fkgFSHoyP4f9RivYldVVRA");
-		 service.setUserCredentials("keller.projet380@gmail.com", "projet380");
-		 d = new Distance();
-	}
-	
+	/**
+	 * Authenticates the user
+	 * @param login
+	 * @param password
+	 */
 	public Youtube(String login,String password) 
 	{
 		service = new YouTubeService("179467727333.apps.googleusercontent.com", "AIzaSyDvAx-Sfz307fkgFSHoyP4f9RivYldVVRA");
 		try {
 			service.setUserCredentials(login, password);
+			valideLogin = true;
 		} catch (AuthenticationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		d = new Distance();
 	}
-	
-	private String getSongId(VideoEntry video)
+	/**
+	 * @return true if the connection works
+	 */
+	public boolean isLoginValid()
 	{
-		return video.getId().substring(27, 38);
+		return valideLogin;
 	}
 	
+	/**
+	 * Get Song name 
+	 * @param video
+	 * @return The name of the Song
+	 */
 	public String getSongName(VideoEntry video)
 	{
 		return video.getTitle().getPlainText();
 	}
-	
+	/**
+	 * Add a specific song to a specific playlist
+	 */
 	private void addSongToPlaylist(String songName,String playListName) throws IOException, ServiceException
 	{
 		PlaylistLinkEntry play = getPlaylist(playListName);
@@ -62,6 +84,13 @@ public class Youtube {
 		service.insert(new URL(playlistUrl), playlistEntry);
 	}
 	
+	/**
+	 * Search song with a levenshtein distance 
+	 * @param name
+	 * @return the video 
+	 * @throws IOException
+	 * @throws ServiceException
+	 */
 	public VideoEntry searchSong(String name) throws IOException, ServiceException
 	{
 		int distance = 50 ; // On prend une distance de 50 pour être sur 
@@ -89,6 +118,14 @@ public class Youtube {
 		}
 	}
 	
+	/**
+	 * Get the "name" playlist
+	 * @param name
+	 * @return the playlist
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 * @throws ServiceException
+	 */
 	private PlaylistLinkEntry getPlaylist(String name) throws MalformedURLException, IOException, ServiceException
 	{
 		PlaylistLinkEntry playlist = null;
@@ -108,6 +145,13 @@ public class Youtube {
 		return playlist;
 	}
 	
+	/**
+	 * Create a new playlist
+	 * @param name
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 * @throws ServiceException
+	 */
 	private void createPlaylist(String name) throws MalformedURLException, IOException, ServiceException
 	{
 		String feedUrl = "http://gdata.youtube.com/feeds/api/users/default/playlists";
@@ -116,17 +160,24 @@ public class Youtube {
 	    service.insert(new URL(feedUrl), newEntry);
 	}
 	
+	/**
+	 * Get the playlist name
+	 * @param list
+	 * @return
+	 */
 	private String getPlaylistName(PlaylistLinkEntry list)
 	{
 		return list.getTitle().getPlainText();
 	}
 	
-	private String getPlaylistName(PlaylistEntry list)
-	{
-		return list.getTitle().getPlainText();
-	}
-	
-	
+	/**
+	 * Create the URL of the playlist
+	 * @param playlist
+	 * @return
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 * @throws ServiceException
+	 */
 	public String createUrl(String playlist) throws MalformedURLException, IOException, ServiceException
 	{
 		String adress = null;
@@ -137,6 +188,15 @@ public class Youtube {
 		return adress;
 	}
 	
+	/**
+	 * Fill the playlist with the songs located in the specific file
+	 * @param path
+	 * @param playlistName
+	 * @return
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 * @throws ServiceException
+	 */
 	public String doPlaylist(String path,String playlistName) throws MalformedURLException, IOException, ServiceException
 	{
 		createPlaylist(playlistName);
@@ -157,15 +217,13 @@ public class Youtube {
 		return createUrl(playlistName);
 	}
 	
+	/**
+	 * Return the Youtube Songs
+	 * @return
+	 */
 	public ArrayList<String> getSongs()
 	{
 		return YoutubeSongs;
 	}
 	
-	public static void main(String[] args) throws IOException, ServiceException
-	{
-		Youtube youtube = new Youtube();
-		youtube.doPlaylist("C:/Users/roman/Desktop/list.xml","salut");
-		youtube.getSongs();
-	}
 }
