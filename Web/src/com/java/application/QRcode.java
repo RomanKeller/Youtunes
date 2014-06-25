@@ -104,8 +104,8 @@ public class QRcode {
 		Font h = new Font("Helvetica", Font.PLAIN, 18);
 		String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 		g.setFont(h);
-		g.drawString(s, x, y);
-		g.drawString(date,x,y+30);
+		g.drawString(s, x, y+10);
+		g.drawString(date,x,y+50);
 
 		// Ecriture sur le disque
 		File f = new File(outputFileName);
