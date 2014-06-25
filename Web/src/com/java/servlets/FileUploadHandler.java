@@ -49,10 +49,10 @@ public class FileUploadHandler extends HttpServlet {
 					}
 				}
 				request.setAttribute("upResult", true);         
-				request.setAttribute("message", "Fichier uploadé avec succès");
+				request.setAttribute("message", "File Successfully uploaded");
 
 			} catch (Exception ex) {
-				request.setAttribute("message", "Echec de l'upload a cause de :" + ex);
+				request.setAttribute("message", "Fail to upload :" + ex);
 			}          
 
 		}else{

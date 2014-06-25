@@ -53,79 +53,79 @@ public class Interface {
 	public static String path = null;
 	public static String htmlLink;
 	private JButton buttonOK = new JButton("OK");
-	
-    public static void main(String[] arg) throws IOException, ServiceException {	
-    Interface i = new Interface();
-    i.login();;
-	
-    }
-   /**
-    * Creating the frame which contains the itunes and youtube songs
-    * @return
-    * @throws MalformedURLException
-    * @throws IOException
-    * @throws ServiceException
-    */
-    public JFrame showSong() throws MalformedURLException, IOException, ServiceException
-    {
-    	cadre = new JFrame("Main Menu");
-    	it = new ItunesParser();
-    	while(path == null)
-    	{
-    		path = fileChooser();
-    	}
-    	System.out.println("Computing the playlist...");
-    	htmlLink = youtube.doPlaylist(path,playlistName);
-    	listSong = youtube.getSongs();
-    	JPanel panel = new JPanel();
-    	panel.add(ItunesText(),BorderLayout.WEST);
-    	panel.add(YoutubeText(),BorderLayout.EAST);
-    	panel.add(computeButton(),BorderLayout.SOUTH);
-    	cadre.setPreferredSize(new Dimension(650,450));
-    	cadre.getContentPane().add(panel);
-    	cadre.pack();
-    	cadre.setVisible(true);
-    	cadre.setLocationRelativeTo(null);
-    	cadre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	return cadre;
-    }
-    
-    /**
-     * Creating the FileChooser to get the playlist
-     * @return the playlist's path
-     */
-    public String fileChooser()
-    {
-    	JFileChooser chooser = new JFileChooser();
-    	chooser.setCurrentDirectory(new File("."));
-    	chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-    	chooser.showOpenDialog(null);
-    	File selectedPfile = chooser.getSelectedFile();
-    	path = selectedPfile.getAbsolutePath();
-    	String fullName = selectedPfile.getName();
-    	playlistName = fullName.substring(0,fullName.length()-4);
-    	String extension = fullName.substring(fullName.length()-4,fullName.length());
-    	if(extension.equals(".xml"))
-    	{
-    	return path;
-    	}
-    	else 
-    	{
-    		JOptionPane.showMessageDialog(cadre, "Please select a .xml playlist format!");
-    		return null;
-    	}
-    }
-    
-    /**
-     * Creating the scrollPane which shows the Itunes songs
-     * @return a ScrollPane
-     */
-    public JScrollPane ItunesText()
-    {
-    	JPanel itunes = new JPanel();
-    	JTextArea text = new JTextArea(20,20);
-    	text.setWrapStyleWord(true);
-    	ArrayList<String> ItunesSongs = it.getItunesSongs();
+
+	public static void main(String[] arg) throws IOException, ServiceException {	
+		Interface i = new Interface();
+		i.login();;
+
+	}
+	/**
+	 * Creating the frame which contains the itunes and youtube songs
+	 * @return
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 * @throws ServiceException
+	 */
+	public JFrame showSong() throws MalformedURLException, IOException, ServiceException
+	{
+		cadre = new JFrame("Main Menu");
+		it = new ItunesParser();
+		while(path == null)
+		{
+			path = fileChooser();
+		}
+		System.out.println("Computing the playlist...");
+		htmlLink = youtube.doPlaylist(path,playlistName);
+		listSong = youtube.getSongs();
+		JPanel panel = new JPanel();
+		panel.add(ItunesText(),BorderLayout.WEST);
+		panel.add(YoutubeText(),BorderLayout.EAST);
+		panel.add(computeButton(),BorderLayout.SOUTH);
+		cadre.setPreferredSize(new Dimension(650,450));
+		cadre.getContentPane().add(panel);
+		cadre.pack();
+		cadre.setVisible(true);
+		cadre.setLocationRelativeTo(null);
+		cadre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		return cadre;
+	}
+
+	/**
+	 * Creating the FileChooser to get the playlist
+	 * @return the playlist's path
+	 */
+	public String fileChooser()
+	{
+		JFileChooser chooser = new JFileChooser();
+		chooser.setCurrentDirectory(new File("."));
+		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		chooser.showOpenDialog(null);
+		File selectedPfile = chooser.getSelectedFile();
+		path = selectedPfile.getAbsolutePath();
+		String fullName = selectedPfile.getName();
+		playlistName = fullName.substring(0,fullName.length()-4);
+		String extension = fullName.substring(fullName.length()-4,fullName.length());
+		if(extension.equals(".xml"))
+		{
+			return path;
+		}
+		else 
+		{
+			JOptionPane.showMessageDialog(cadre, "Please select a .xml playlist format!");
+			return null;
+		}
+	}
+
+	/**
+	 * Creating the scrollPane which shows the Itunes songs
+	 * @return a ScrollPane
+	 */
+	public JScrollPane ItunesText()
+	{
+		JPanel itunes = new JPanel();
+		JTextArea text = new JTextArea(20,20);
+		text.setWrapStyleWord(true);
+		ArrayList<String> ItunesSongs = it.getItunesSongs();
 		for(int i=0;i<ItunesSongs.size();i++)
 		{
 			text.setText(text.getText()+"\n"+ItunesSongs.get(i));
@@ -137,18 +137,18 @@ public class Interface {
 		scroll.add(itunes);
 		scroll.setPreferredSize(new Dimension(300,350));
 		return scroll;
-    }
-    
-    /**
-     * Creating the scrollPane which shows the Youtube songs
-     * @return a ScrollPane
-     */
-    public JScrollPane YoutubeText() throws IOException, ServiceException
-    {
-    	
-    	JPanel youtube = new JPanel();
-    	JTextArea text = new JTextArea(20,20);
-    	text.setWrapStyleWord(true);
+	}
+
+	/**
+	 * Creating the scrollPane which shows the Youtube songs
+	 * @return a ScrollPane
+	 */
+	public JScrollPane YoutubeText() throws IOException, ServiceException
+	{
+
+		JPanel youtube = new JPanel();
+		JTextArea text = new JTextArea(20,20);
+		text.setWrapStyleWord(true);
 		for(int i=0;i<listSong.size();i++)
 		{
 			text.setText(text.getText()+"\n"+listSong.get(i));
@@ -160,39 +160,39 @@ public class Interface {
 		scroll.add(youtube);
 		scroll.setPreferredSize(new Dimension(300,350));
 		return scroll;
-    }
-    
-    /**
-     * Creating a button which will allow the computation to get the QR Code
-     * @return the button
-     */
-    public JButton computeButton()
-    {
-    	compute = new JButton("Compute!");
-    	compute.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-             cadre.dispose();  
-             try {
-				generateQRCode(playlistName,htmlLink);
-				System.out.println("QR code location :  D:/ProjetUploads/Result/"+playlistName+".png");
-			} catch (WriterException | IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+	}
+
+	/**
+	 * Creating a button which will allow the computation to get the QR Code
+	 * @return the button
+	 */
+	public JButton computeButton()
+	{
+		compute = new JButton("Compute!");
+		compute.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				cadre.dispose();  
+				try {
+					generateQRCode(playlistName,htmlLink);
+					System.out.println("QR code location :  D:/ProjetUploads/Result/"+playlistName+".png");
+				} catch (WriterException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
-            }
-        });      
-    	return compute;
-    }
-	
-    /**
-     * Method which allow the user to his Google account 
-     */
+		});      
+		return compute;
+	}
+
+	/**
+	 * Method which allow the user to his Google account 
+	 */
 	public void login()
 	{
 		final JFrame login = new JFrame("Login");
 		JPanel pan = new JPanel();
-    	login.setPreferredSize(new Dimension(250,250));
+		login.setPreferredSize(new Dimension(250,250));
 		final JPasswordField passwordField = new JPasswordField(20);
 		final JTextField fieldLogin = new JTextField(20);
 		login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -230,7 +230,7 @@ public class Interface {
 			}
 		});
 	}
-	
+
 	/**
 	 * Method which creates the Qr Code given the name of the playlist and its URL 
 	 * @param name
@@ -242,10 +242,10 @@ public class Interface {
 	public void generateQRCode(String name,String link) throws WriterException, FileNotFoundException, IOException
 	{
 		final String imageFormat = "png";
-        final String outputFileName = "D:/ProjetUploads/Result/"+ name +'.'+ imageFormat;
-        final int size = 400;
-        final ErrorCorrectionLevel level = ErrorCorrectionLevel.Q;
-        final ByteMatrix matrix = QRcode.generateMatrix(link, level);
-        QRcode.writeImage(outputFileName, imageFormat, matrix, size,name);
+		final String outputFileName = "D:/ProjetUploads/Result/"+ name +'.'+ imageFormat;
+		final int size = 400;
+		final ErrorCorrectionLevel level = ErrorCorrectionLevel.Q;
+		final ByteMatrix matrix = QRcode.generateMatrix(link, level);
+		QRcode.writeImage(outputFileName, imageFormat, matrix, size,name);
 	}
 }

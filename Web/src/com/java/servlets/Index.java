@@ -11,6 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 public class Index extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse
 			response ) throws ServletException, IOException{
-			 this.getServletContext().getRequestDispatcher("/WEB-INF/Index.jsp").forward( request, response );
-			}
+		this.getServletContext().getRequestDispatcher("/WEB-INF/Index.jsp").forward( request, response );
+	}
 }

@@ -42,12 +42,12 @@ public class Application  extends HttpServlet{
 				HttpSession session=request.getSession();  
 				session.setAttribute("login",login);  
 				session.setAttribute("password",password);  
-				message = "Choisir la playlist que vous voulez importer";
+				message = "Choose the playlist to import";
 				request.setAttribute( "message", message );
 				this.getServletContext().getRequestDispatcher("/WEB-INF/Connexion.jsp" ).forward( request, response );
 				request.setAttribute("client",login);
 			} catch (AuthenticationException e) {
-				message = "Erreur d'authentification!";
+				message = "Authentification error";
 				request.setAttribute( "message", message );
 				this.getServletContext().getRequestDispatcher("/WEB-INF/Index.jsp" ).forward( request, response );
 				e.printStackTrace();

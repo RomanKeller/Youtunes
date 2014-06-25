@@ -16,7 +16,7 @@
 	String htmlLink = (String) request.getAttribute("hmtlLink"); 
  	htmlLink = htmlLink + ";autoplay=1";
  	String path =  (String) request.getAttribute("path");
- 	out.println("Le QR code a été généré et est stocké au chemin suivant :"+path);%>
+ 	out.println("The QR Code has been created and uploaded here :"+path);%>
  		<p>
  		</p>
 	

@@ -63,7 +63,7 @@ public class Youtube {
 	{
 		return valideLogin;
 	}
-	
+
 	/**
 	 * Get Song name 
 	 * @param video
@@ -83,7 +83,7 @@ public class Youtube {
 		PlaylistEntry playlistEntry = new PlaylistEntry(searchSong(songName));
 		service.insert(new URL(playlistUrl), playlistEntry);
 	}
-	
+
 	/**
 	 * Search song with a levenshtein distance 
 	 * @param name
@@ -117,7 +117,7 @@ public class Youtube {
 			return video;
 		}
 	}
-	
+
 	/**
 	 * Get the "name" playlist
 	 * @param name
@@ -144,7 +144,7 @@ public class Youtube {
 		}
 		return playlist;
 	}
-	
+
 	/**
 	 * Create a new playlist
 	 * @param name
@@ -156,10 +156,10 @@ public class Youtube {
 	{
 		String feedUrl = "http://gdata.youtube.com/feeds/api/users/default/playlists";
 		PlaylistLinkEntry newEntry = new PlaylistLinkEntry();
-	    newEntry.setTitle(new PlainTextConstruct(name));
-	    service.insert(new URL(feedUrl), newEntry);
+		newEntry.setTitle(new PlainTextConstruct(name));
+		service.insert(new URL(feedUrl), newEntry);
 	}
-	
+
 	/**
 	 * Get the playlist name
 	 * @param list
@@ -169,7 +169,7 @@ public class Youtube {
 	{
 		return list.getTitle().getPlainText();
 	}
-	
+
 	/**
 	 * Create the URL of the playlist
 	 * @param playlist
@@ -187,7 +187,7 @@ public class Youtube {
 		adress= adress+"list="+play.getPlaylistId();
 		return adress;
 	}
-	
+
 	/**
 	 * Fill the playlist with the songs located in the specific file
 	 * @param path
@@ -216,7 +216,7 @@ public class Youtube {
 		}
 		return createUrl(playlistName);
 	}
-	
+
 	/**
 	 * Return the Youtube Songs
 	 * @return
@@ -225,5 +225,5 @@ public class Youtube {
 	{
 		return YoutubeSongs;
 	}
-	
+
 }
